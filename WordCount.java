@@ -25,14 +25,14 @@ public class WordCount
 			char m_char[] = "acgt".toCharArray();
 			int[] m = new int[8];
 
-			for(int m[0]=0; m[0]<4; m[0]++)
-				for(int m[1]=0; m[1]<4; m[1]++)
-					for(int m[2]=0; m[2]<4; m[2]++)
-						for(int m[3]=0; m[3]<4; m[3]++)
-							for(int m[4]=0; m[4]<4; m[4]++)
-								for(int m[5]=0; m[5]<4; m[5]++)
-									for(int m[6]=0; m[6]<4; m[6]++)
-										for(int m[7]=0; m[7]<4; m[7]++)
+			for(m[0]=0; m[0]<4; m[0]++)
+				for(m[1]=0; m[1]<4; m[1]++)
+					for(m[2]=0; m[2]<4; m[2]++)
+						for(m[3]=0; m[3]<4; m[3]++)
+							for(m[4]=0; m[4]<4; m[4]++)
+								for(m[5]=0; m[5]<4; m[5]++)
+									for(m[6]=0; m[6]<4; m[6]++)
+										for(m[7]=0; m[7]<4; m[7]++)
 										{
 											int min_dist = 10;
 											String motif = "";
@@ -44,7 +44,7 @@ public class WordCount
 												int dist = 0;
 												for(int j = 0; j < 8; j++)
 												{
-													if(str[i + j] != motif[j])
+													if(str.charAt(i + j) != motif.charAt(j))
 														dist++;
 												}
 												if(dist < min_dist)
