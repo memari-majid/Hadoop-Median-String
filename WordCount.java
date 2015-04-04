@@ -15,17 +15,47 @@ public class WordCount
 {
 	public static class TokenizerMapper extends Mapper<Object, Text, Text, IntWritable>
 	{
-		private final static IntWritable one = new IntWritable(1);
-		private Text word = new Text();
+		private IntWritable value = new IntWritable(0);
+		private Text        word  = new Text();
 
-		public void map(Object key, Text value, Context context) throws IOException, InterruptedException
+		public void map(Object key, Text input, Context context) throws IOException, InterruptedException
 		{
-			StringTokenizer itr = new StringTokenizer(value.toString());
-			while (itr.hasMoreTokens()) 
-			{
-				word.set(itr.nextToken());
-				context.write(word, one);
-			}
+			String str = input.toString();
+			int str_len = str.length();
+			char m_char[] = "acgt".toCharArray();
+			int[] m = new int[8];
+
+			for(int m[0]=0; m[0]<4; m[0]++)
+				for(int m[1]=0; m[1]<4; m[1]++)
+					for(int m[2]=0; m[2]<4; m[2]++)
+						for(int m[3]=0; m[3]<4; m[3]++)
+							for(int m[4]=0; m[4]<4; m[4]++)
+								for(int m[5]=0; m[5]<4; m[5]++)
+									for(int m[6]=0; m[6]<4; m[6]++)
+										for(int m[7]=0; m[7]<4; m[7]++)
+										{
+											int min_dist = 10;
+											String motif = "";
+											for(int i = 0; i < 8; i++)
+												motif += m_char[m[i]];
+
+											for(int i = 0; i < str_len - 8; i++)
+											{
+												int dist = 0;
+												for(int j = 0; j < 8; j++)
+												{
+													if(str[i + j] != motif[j])
+														dist++;
+												}
+												if(dist < min_dist)
+													min_dist = dist;
+												if(min_dist == 0)
+													break;
+											}
+											word.set(motif);
+											value.set(min_dist);
+											context.write(word, value);
+										}
 		}
 	}
 
@@ -49,12 +79,16 @@ public class WordCount
 	{
 		Configuration conf = new Configuration();
 		Job job = Job.getInstance(conf, "word count");
+
 		job.setJarByClass(WordCount.class);
+
 		job.setMapperClass(TokenizerMapper.class);
 		job.setCombinerClass(IntSumReducer.class);
 		job.setReducerClass(IntSumReducer.class);
+
 		job.setOutputKeyClass(Text.class);
 		job.setOutputValueClass(IntWritable.class);
+
 		FileInputFormat.addInputPath(job, new Path(args[0]));
 		FileOutputFormat.setOutputPath(job, new Path(args[1]));
 		System.exit(job.waitForCompletion(true) ? 0 : 1);
