@@ -17,6 +17,20 @@ public class WordCount
 		public int score, seq_id, start_index, total = 0;
 		public String candidate;
 
+		public MotifInSeq()
+		{
+
+		}
+
+		public MotifInSeq(MotifInSeq t)
+		{
+			score = t.score;
+			seq_id = t.seq_id;
+			start_index = t.start_index;
+			total = t.total;
+			candidate = t.candidate;
+		}
+
 		public void readFields(DataInput in) throws IOException
 		{
 			score = in.readInt();
@@ -112,7 +126,7 @@ public class WordCount
 
 			for (MotifInSeq val : values)
 			{
-				cache.add(val);
+				cache.add(new MotifInSeq(val));
 				sum += val.score;
 				//val.total = sum;
 				//context.write(key, val);
