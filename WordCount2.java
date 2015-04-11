@@ -104,6 +104,7 @@ public class WordCount
 
 											value.score = min_dist;
 											value.seq_id = (int)key.get();
+											value.seq_id /= 58;
 											value.start_index = min_index;
 											value.candidate = str.substring(min_index, min_index + 8);
 
