@@ -1,3 +1,4 @@
+
 export HADOOP_CLASSPATH=$JDK_HOME/lib/tools.jar
 hadoop com.sun.tools.javac.Main WordCount.java
 jar cf wc.jar WordCount*.class
@@ -5,3 +6,7 @@ hadoop fs -rm -f -r output1
 hadoop jar wc.jar WordCount promoters_data_clean.txt output1
 
 hadoop fs -cat output1/part-r-00000
+
+
+hadoop fs -ls
+hadoop fs -put ./promoters_data_clean.txt ./
