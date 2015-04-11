@@ -36,7 +36,7 @@ public class WordCount
 		@Override
 		public String toString()
 		{
-			return candidate + ", " + seq_id + ", " + score + ", " + start_index + ", " + total;
+			return candidate + "\t" + seq_id + "\t" + score + "\t" + start_index + "\t " + total;
 		}
 	}
 
