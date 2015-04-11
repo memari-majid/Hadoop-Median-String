@@ -1,0 +1,45 @@
+I first started reading about the mapreduce itself and its relation to Apache hadoop. Then I read documents about hadoop and its distributed file system (HDFS). Since I am already familiar with Linux and Java I only needed to learn aboud hadoop.
+At first I tested the java compiler on the server. I wrote a simple java program and uploaded it to server, compiled it and run it.
+Then I tried to run the wordcount example. I used this tutorial:
+http://hadoop.apache.org/docs/current/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html
+
+I uploaded the source for "Example: WordCount v1.0" to the server and compile and run it with these commands:
+
+// to set path for tools.jar
+export HADOOP_CLASSPATH=$JDK_HOME/lib/tools.jar
+
+// to compile the source code
+hadoop com.sun.tools.javac.Main WordCount.java
+
+// to generate jar file from compile .class files
+jar cf wc.jar WordCount*.class
+
+// and finally to run hadoop
+hadoop jar wc.jar WordCount input.txt output
+
+before that I created input.txt with some words in it and copied it to the hadoop file system.
+
+hadoop fs -put ./input.txt ./
+
+And then we can see the file:
+hadoop fs -ls
+
+Then I started to change the code to have the simplified version of the project.
+I didn't change the class names and other things, that's why they are still named for the wordcount example.
+The reducer function is pretty much the same, I only had to write map function.
+My code looks self explanatory. There are 8 nested for loops to generate all the possible motifs.
+then I scan the line to find min_dist for that motif. And finally I write the result which is min_dist for that motif on that line to the context object.
+The reducer will add them all together to find the total distance for each motif.
+For the simpified version map values are just simple integers.
+
+But for the full version of the problem I had to create my own structure to use it as map values.
+It has 4 elements. score, seq_id, start_index and candidate.
+It must "implement Writable".
+Then in the mapper instead of writing a simple integer I write an instance of my structure.
+score is the same as min_dist, seq_id is the line number (from key in map function), start_index is where in that line that I found the candidate with min_dist.
+Then the reducer function will again add all the scores together to find the total distance.
+
+In this project I became familiar with mapreduce and hadoop.
+
+I really don't know what else to add. If you need any further explanation please let me know.
+Thank you.
