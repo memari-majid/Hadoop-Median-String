@@ -10,3 +10,6 @@ hadoop fs -cat output1/part-r-00000
 
 hadoop fs -ls
 hadoop fs -put ./promoters_data_clean.txt ./
+
+hadoop fs -copyToLocal output1/part-r-00000 ./
+
