@@ -38,8 +38,3 @@ It must "implement Writable".
 Then in the mapper instead of writing a simple integer I write an instance of my structure.
 score is the same as min_dist, seq_id is the line number (from key in map function), start_index is where in that line that I found the candidate with min_dist.
 Then the reducer function will again add all the scores together to find the total distance.
-
-In this project I became familiar with mapreduce and hadoop.
-
-I really don't know what else to add. If you need any further explanation please let me know.
-Thank you.
