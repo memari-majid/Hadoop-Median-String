@@ -1,8 +1,3 @@
-I first started reading about the mapreduce itself and its relation to Apache hadoop. Then I read documents about hadoop and its distributed file system (HDFS). Since I am already familiar with Linux and Java I only needed to learn aboud hadoop.
-At first I tested the java compiler on the server. I wrote a simple java program and uploaded it to server, compiled it and run it.
-Then I tried to run the wordcount example. I used this tutorial:
-http://hadoop.apache.org/docs/current/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html
-
 I uploaded the source for "Example: WordCount v1.0" to the server and compile and run it with these commands:
 
 // to set path for tools.jar
