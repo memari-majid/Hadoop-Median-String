@@ -10,7 +10,7 @@ import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
-public class WordCount
+public class program2
 {
 	public static class MotifInSeq implements Writable
 	{
