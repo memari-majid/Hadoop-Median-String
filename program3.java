@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.*;
 
-public class WordCount
+public class program3
 {
 	public static class MotifInSeq
 	{
